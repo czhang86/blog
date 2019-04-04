@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+  <h4>请登陆：</h4>
+  <h5>(必须是管理员，请事先注册)</h5>
+
+  {% if form.errors %}
+    <p>用户名与密码不符</p>
+  {% endif %}
+
+  <form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" class="btn btn-primary" value="Login">
+      <input type="hidden" name="next" value="{{next}}">
+  </form>
+</div>
+{% endblock %}
